@@ -66,6 +66,14 @@
 	./acme.sh --issue -d echojs.com -d www.echojs.com -w /srv/www/www.echojs.com/htdocs/
 	./acme.sh --install-cert -d echojs.com --key-file /etc/nginx/ssl/echojs.com.key --fullchain-file /etc/nginx/ssl/fullchain.cer --reloadcmd "service nginx force-reload"
 
+# Hourly Redis database backup
+
+	crontab -e
+
+Then add the following line:
+
+	0 * * * * tar cfz /home/echojs/echojs-$(date +\%Y\%m\%d-\%H\%M).tar.gz /var/lib/redis/dump.rdb
+
 # Email service
 
 In order to allow users to recover their passwords, edit `app_config.rb` to
