@@ -66,6 +66,11 @@
 	./acme.sh --issue -d echojs.com -d www.echojs.com -w /srv/www/www.echojs.com/htdocs/
 	./acme.sh --install-cert -d echojs.com --key-file /etc/nginx/ssl/echojs.com.key --fullchain-file /etc/nginx/ssl/fullchain.cer --reloadcmd "service nginx force-reload"
 
+## Manually renew certificate
+
+	./acme.sh -r -d echojs.com
+	service nginx reload
+
 # Hourly Redis database backup
 
 	crontab -e
