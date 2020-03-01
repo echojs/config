@@ -18,6 +18,10 @@ server {
 
 	ssl_certificate /etc/nginx/ssl/fullchain.cer;
 	ssl_certificate_key /etc/nginx/ssl/echojs.com.key;
+	
+	if ($scheme = http) {
+            return 301 https://$server_name$request_uri;
+        }
 
 	# openssl dhparam 4096 -out /etc/ssl/dhparam.pem
 	ssl_dhparam /etc/ssl/dhparam.pem;
