@@ -1,0 +1,19 @@
+# /etc/systemd/system/unicorn.service
+[Unit]
+Description=Unicorn web server for user echojs
+After=network.target nginx.service
+Requires=nginx.service
+
+[Service]
+Type=forking
+User=echojs
+WorkingDirectory=/home/echojs/echojs
+Environment=RAILS_ENV=production
+ExecStart=/usr/local/bin/unicorn -c config/unicorn.rb -E production -D
+PIDFile=/home/echojs/echojs/tmp/pids/unicorn.pid
+ExecStop=/bin/kill -QUIT $MAINPID
+ExecReload=/bin/kill -HUP $MAINPID
+ExecRestart=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target
