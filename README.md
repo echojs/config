@@ -1,7 +1,7 @@
 # Install required packages
 
 	apt-get update
-	apt-get -y install build-essential nginx redis-server ruby ruby-dev
+	apt-get -y install build-essential nginx redis-server ruby ruby-dev git
 	gem install bundler unicorn
 
 # Create the echojs user
