@@ -19,11 +19,19 @@
 	chown -R echojs:echojs /home/echojs/
 	cd
 
-# Configure unicorn
+# Configure unicorn (init.d / deprecated)
 
 	cp init.d/unicorn /etc/init.d
 	update-rc.d unicorn defaults 99
 	service unicorn start
+
+# Configure unicorn (systemd)
+
+	cp systemd/unicorn.service /etc/systemd/system/unicorn.service
+	sudo systemctl daemon-reload
+	systemctl enable unicorn
+	systemctl start unicorn
+	systemctl status unicorn
 
 # Configure nginx
 
